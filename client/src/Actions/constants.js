@@ -1,0 +1,8 @@
+const GET_RECORDS = 'GET_RECORDS';
+const CHANGE_PLAYER = 'CHANGE_PLAYER';
+
+
+module.exports = {
+    GET_RECORDS,
+    CHANGE_PLAYER
+}

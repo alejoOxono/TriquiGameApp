@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import './Gamers.scss'
 
 function Gamers() {
-    const [currentGamer, setCurrentGamer] = useState(false)
+
+    const player = useSelector((state) => state.playerBoolean);
 
     return (
         <div className="content-all-gamers">
@@ -18,8 +20,9 @@ function Gamers() {
             </div>
 
             <div className="jugador-actual">
+                <p>Jugador Actual</p>
                 {
-                    !currentGamer ?
+                    !player ?
                         <p>Jugador Uno</p>
                         :
                         <p>Jugador Dos</p>
