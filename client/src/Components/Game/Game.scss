@@ -1,0 +1,15 @@
+
+
+.content-all-game {
+    .filas {
+        display: flex;
+        .elementos {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .elementos:hover {
+            cursor: pointer;
+        }
+    }
+}
