@@ -1,6 +1,26 @@
 
 
 .content-all-game {
+    .container-modal {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0%;
+        background-color: rgba(0, 0, 0, 0.336);
+        .content-modal {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background-color: white;
+            z-index: 1;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            align-items: center;
+            justify-content: center;
+            border-radius: 2%;
+        }
+    }
     .filas {
         display: flex;
         .elementos {

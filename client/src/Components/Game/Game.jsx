@@ -7,11 +7,12 @@ function Game() {
 
     const dispatch = useDispatch();
     const player = useSelector((state) => state.playerBoolean);
+    const playerOne = useSelector((state) => state.playerOne);
+    const playerTwo = useSelector((state) => state.playerTwo);
 
     const [thereIsAWinner, setThereIsAWinner] = useState(false);
     const [thereIsATie, setThereIsATie] = useState(false);
     const [whoIsTheWinner, setWhoIsTheAWinner] = useState('');
-
 
     const [flagUnoUno, setFlagUnoUno] = useState(false);
     const [flagUnoDos, setFlagUnoDos] = useState(false);
@@ -219,11 +220,11 @@ function Game() {
         for (let n = 0; n < everyOptionToWin.length; n++) {
             if ((everyOptionToWin[n].filter((el) => el === 'X').length === 3)) {
                 setThereIsAWinner(true);
-                setWhoIsTheAWinner('jugador uno');
+                setWhoIsTheAWinner(playerOne);
             }
             if ((everyOptionToWin[n].filter((el) => el === 'O').length === 3)) {
                 setThereIsAWinner(true)
-                setWhoIsTheAWinner('jugador dos');
+                setWhoIsTheAWinner(playerTwo);
             }
         }
     }
@@ -232,20 +233,50 @@ function Game() {
         if ((everyOptionToTie.filter((el) => el === true).length === 8)) setThereIsATie(true)
     }
 
+    const handleReload = () =>{
+        document.location.reload();
+    }
+
     return (
         <div className="content-all-game">
+
             {
                 thereIsAWinner ?
-                    <p>{`${whoIsTheWinner}`}</p>
+
+                    <div className="container-modal">
+                        <div className='content-modal'>
+                            <div className='title-modal'>
+                                <h3>The Winner</h3>
+                            </div>
+                            <div className="text-modal">
+                                <p>{`${whoIsTheWinner}`}</p>
+                            </div>
+                            <div className="button-modal">
+                                <button type='button' onClick={(e)=>handleReload()}>Volver a Jugar</button>
+                            </div>
+                        </div>
+                    </div>
                     :
-                    <p></p>
+                    <></>
             }
+
             {
-                thereIsATie && !thereIsAWinner ?
-                    <p>Hay empate</p>
+               thereIsATie && !thereIsAWinner ?
+
+                    <div className="container-modal">
+                        <div className='content-modal'>
+                            <div className='title-modal'>
+                                <h3>Empate</h3>
+                            </div>
+                            <div className="button-modal">
+                                <button type='button' onClick={(e)=>handleReload()}>Volver a Jugar</button>
+                            </div>
+                        </div>
+                    </div>
                     :
-                    <p></p>
+                    <></>
             }
+
             <div className="filas fila-uno-triqui">
                 <div className="elementos elemento-uno-uno" onClick={() => handleChange(1)}>
                     {
