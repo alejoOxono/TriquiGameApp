@@ -73,7 +73,7 @@ function Gamers() {
                                 :
                                 <>
                                     <input type="text" placeholder='...Nuevo Nombre' onChange={(e) => handleInput(e)} />
-                                    <button type='button' onClick={(e) => handleChangeName(e, 4)}>Cancelar</button>
+                                    <button type='button' onClick={(e) => handleChangeName(e, 3)}>Cancelar</button>
                                     <button type='button' onClick={(e) => handleSend(e, 1)}>Cambiar</button>
                                 </>
                         }
@@ -89,7 +89,7 @@ function Gamers() {
                                 :
                                 <>
                                     <input type="text" placeholder='...Nuevo Nombre' onChange={(e) => handleInput(e)} />
-                                    <button type='button' onClick={(e) => handleChangeName(e, 3)}>Cancelar</button>
+                                    <button type='button' onClick={(e) => handleChangeName(e, 4)}>Cancelar</button>
                                     <button type='button' onClick={(e) => handleSend(e, 2)}>Cambiar</button>
                                 </>
                         }
