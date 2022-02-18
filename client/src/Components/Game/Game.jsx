@@ -8,6 +8,11 @@ function Game() {
     const dispatch = useDispatch();
     const player = useSelector((state) => state.playerBoolean);
 
+    const [thereIsAWinner, setThereIsAWinner] = useState(false);
+    const [thereIsATie, setThereIsATie] = useState(false);
+    const [whoIsTheWinner, setWhoIsTheAWinner] = useState('');
+
+
     const [flagUnoUno, setFlagUnoUno] = useState(false);
     const [flagUnoDos, setFlagUnoDos] = useState(false);
     const [flagUnoTres, setFlagUnoTres] = useState(false);
@@ -29,135 +34,218 @@ function Game() {
     const [valueFlagTresTres, setValueFlagTresTres] = useState('');
 
     //horizontales
-    const unoUno = [];
-    const unoDos = [];
-    const unoTres = [];
+    const [unoUno, setUnoUno] = useState([]);
+    const [unoDos, setUnoDos] = useState([]);
+    const [unoTres, setUnoTres] = useState([]);
     //verticales
-    const dosUno = [];
-    const dosDos = [];
-    const dosTres = [];
+    const [dosUno, setDosUno] = useState([]);
+    const [dosDos, setDosDos] = useState([]);
+    const [dosTres, setDosTres] = useState([]);
     //diagonales
-    const tresUno = [];
-    const tresDos = [];
+    const [tresUno, setTresUno] = useState([]);
+    const [tresDos, setTresDos] = useState([]);
 
 
+    const everyOptionToWin = [unoUno, unoDos, unoTres, dosUno, dosDos, dosTres, tresUno, tresDos]
+    const everyOptionToTie = [flagUnoUno, flagUnoDos, flagUnoTres, flagDosUno, flagDosDos, flagDosTres,
+        flagTresUno, flagTresDos, flagTresTres]
 
     const handleChange = (value) => {
-        switch (value) {
-            case 1:
-                if (!flagUnoUno) {
-                    if (!player) {
-                        setValueFlagUnoUno('X')
-                        unoUno.push('X')
-                    }
-                    else {
-                        setValueFlagUnoUno('O')
-                        unoUno.push('O')
-                    }
-                    setFlagUnoUno(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 2:
-                if (!flagUnoDos) {
-                    if (!player) {
-                        setValueFlagUnoDos('X')
+        if (!thereIsAWinner) {
 
-                    } else {
-                        setValueFlagUnoDos('O')
-                        
+            switch (value) {
+                case 1:
+                    if (!flagUnoUno) {
+                        if (!player) {
+                            setValueFlagUnoUno('X');
+                            unoUno.push('X');
+                            dosUno.push('X');
+                            tresUno.push('X');
+                        }
+                        else {
+                            setValueFlagUnoUno('O')
+                            unoUno.push('O');
+                            dosUno.push('O');
+                            tresUno.push('O');
+                        }
+                        setFlagUnoUno(true);
+                        dispatch(changePlayer(!player));
                     }
-                    setFlagUnoDos(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 3:
-                if (!flagUnoTres) {
-                    if (!player) {
-                        setValueFlagUnoTres('X')
-                    } else {
-                        setValueFlagUnoTres('O')
+                    break;
+                case 2:
+                    if (!flagUnoDos) {
+                        if (!player) {
+                            setValueFlagUnoDos('X');
+                            unoUno.push('X');
+                            dosDos.push('X');
+                        } else {
+                            setValueFlagUnoDos('O');
+                            unoUno.push('O');
+                            dosDos.push('O');
+                        }
+                        setFlagUnoDos(true);
+                        dispatch(changePlayer(!player));
                     }
-                    setFlagUnoTres(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 4:
-                if (!flagDosUno) {
-                    if (!player) {
-                        setValueFlagDosUno('X')
-                    } else {
-                        setValueFlagDosUno('O')
+                    break;
+                case 3:
+                    if (!flagUnoTres) {
+                        if (!player) {
+                            setValueFlagUnoTres('X');
+                            unoUno.push('X');
+                            dosTres.push('X');
+                            tresDos.push('X');
+                        } else {
+                            setValueFlagUnoTres('O');
+                            unoUno.push('O');
+                            dosTres.push('O');
+                            tresDos.push('O');
+                        }
+                        setFlagUnoTres(true);
+                        dispatch(changePlayer(!player));
                     }
-                    setFlagDosUno(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 5:
-                if (!flagDosDos) {
-                    if (!player) {
-                        setValueFlagDosDos('X')
+                    break;
+                case 4:
+                    if (!flagDosUno) {
+                        if (!player) {
+                            setValueFlagDosUno('X');
+                            unoDos.push('X');
+                            dosUno.push('X');
+                        } else {
+                            setValueFlagDosUno('O');
+                            unoDos.push('O');
+                            dosUno.push('O');
+                        }
+                        setFlagDosUno(true);
+                        dispatch(changePlayer(!player));
                     }
-                    else {
-                        setValueFlagDosDos('O')
+                    break;
+                case 5:
+                    if (!flagDosDos) {
+                        if (!player) {
+                            setValueFlagDosDos('X');
+                            unoDos.push('X');
+                            dosDos.push('X');
+                            tresUno.push('X');
+                            tresDos.push('X');
+                        }
+                        else {
+                            setValueFlagDosDos('O');
+                            unoDos.push('O');
+                            dosDos.push('O');
+                            tresUno.push('O');
+                            tresDos.push('O');
+                        }
+                        setFlagDosDos(true);
+                        dispatch(changePlayer(!player));
                     }
-                    setFlagDosDos(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 6:
-                if (!flagDosTres) {
-                    if (!player) {
-                        setValueFlagDosTres('X')
+                    break;
+                case 6:
+                    if (!flagDosTres) {
+                        if (!player) {
+                            setValueFlagDosTres('X');
+                            unoDos.push('X');
+                            dosTres.push('X');
+                        }
+                        else {
+                            setValueFlagDosTres('O');
+                            unoDos.push('O');
+                            dosTres.push('O');
+                        }
+                        setFlagDosTres(true)
+                        dispatch(changePlayer(!player))
                     }
-                    else {
-                        setValueFlagDosTres('O')
+                    break;
+                case 7:
+                    if (!flagTresUno) {
+                        if (!player) {
+                            setValueFlagTresUno('X');
+                            unoTres.push('X');
+                            dosUno.push('X');
+                            tresDos.push('X');
+                        }
+                        else {
+                            setValueFlagTresUno('O');
+                            unoTres.push('O');
+                            dosUno.push('O');
+                            tresDos.push('O');
+                        }
+                        setFlagTresUno(true);
+                        dispatch(changePlayer(!player));
                     }
-                    setFlagDosTres(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 7:
-                if (!flagTresUno) {
-                    if (!player) {
-                        setValueFlagTresUno('X')
+                    break;
+                case 8:
+                    if (!flagTresDos) {
+                        if (!player) {
+                            setValueFlagTresDos('X');
+                            unoTres.push('X');
+                            dosDos.push('X');
+                        }
+                        else {
+                            setValueFlagTresDos('O');
+                            unoTres.push('O');
+                            dosDos.push('O');
+                        }
+                        setFlagTresDos(true);
+                        dispatch(changePlayer(!player));
                     }
-                    else {
-                        setValueFlagTresUno('O')
+                    break;
+                case 9:
+                    if (!flagTresTres) {
+                        if (!player) {
+                            setValueFlagTresTres('X');
+                            unoTres.push('X');
+                            dosTres.push('X');
+                            tresUno.push('X');
+                        }
+                        else {
+                            setValueFlagTresTres('O');
+                            unoTres.push('O');
+                            dosTres.push('O');
+                            tresUno.push('O');
+                        }
+                        setFlagTresTres(true)
+                        dispatch(changePlayer(!player))
                     }
-                    setFlagTresUno(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 8:
-                if (!flagTresDos) {
-                    if (!player) {
-                        setValueFlagTresDos('X')
-                    }
-                    else {
-                        setValueFlagTresDos('O')
-                    }
-                    setFlagTresDos(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
-            case 9:
-                if (!flagTresTres) {
-                    if (!player) {
-                        setValueFlagTresTres('X')
-                    }
-                    else {
-                        setValueFlagTresTres('O')
-                    }
-                    setFlagTresTres(true)
-                    dispatch(changePlayer(!player))
-                }
-                break;
+                    break;
+                default:
+                    break;
+            }
+            whenIsWin();
+            whenIsTie();
         }
+    }
+
+    const whenIsWin = () => {
+        for (let n = 0; n < everyOptionToWin.length; n++) {
+            if ((everyOptionToWin[n].filter((el) => el === 'X').length === 3)) {
+                setThereIsAWinner(true);
+                setWhoIsTheAWinner('jugador uno');
+            }
+            if ((everyOptionToWin[n].filter((el) => el === 'O').length === 3)) {
+                setThereIsAWinner(true)
+                setWhoIsTheAWinner('jugador dos');
+            }
+        }
+    }
+
+    const whenIsTie = () => {
+        if ((everyOptionToTie.filter((el) => el === true).length === 8)) setThereIsATie(true)
     }
 
     return (
         <div className="content-all-game">
+            {
+                thereIsAWinner ?
+                    <p>{`${whoIsTheWinner}`}</p>
+                    :
+                    <p></p>
+            }
+            {
+                thereIsATie && !thereIsAWinner ?
+                    <p>Hay empate</p>
+                    :
+                    <p></p>
+            }
             <div className="filas fila-uno-triqui">
                 <div className="elementos elemento-uno-uno" onClick={() => handleChange(1)}>
                     {
