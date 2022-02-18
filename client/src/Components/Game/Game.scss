@@ -6,6 +6,7 @@
         width: 100vw;
         height: 100vh;
         top: 0%;
+        left: 0%;
         background-color: rgba(0, 0, 0, 0.336);
         .content-modal {
             position: absolute;
@@ -19,14 +20,24 @@
             align-items: center;
             justify-content: center;
             border-radius: 2%;
+            display: flex;
+            flex-direction: column;
         }
     }
     .filas {
         display: flex;
+        background-color: white;
         .elementos {
             width: 100px;
             height: 100px;
             border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .value-cell {
+                font-size: xx-large;
+                font-weight: bolder;
+            }
         }
         .elementos:hover {
             cursor: pointer;

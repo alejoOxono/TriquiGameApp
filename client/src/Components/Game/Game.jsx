@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { changePlayer } from '../../Actions/actionsCreators';
+import { addRecord, changePlayer } from '../../Actions/actionsCreators';
 import './Game.scss'
 
 function Game() {
@@ -220,10 +220,12 @@ function Game() {
         for (let n = 0; n < everyOptionToWin.length; n++) {
             if ((everyOptionToWin[n].filter((el) => el === 'X').length === 3)) {
                 setThereIsAWinner(true);
+                dispatch(addRecord({'winner':playerOne,'losser':playerTwo}));
                 setWhoIsTheAWinner(playerOne);
             }
             if ((everyOptionToWin[n].filter((el) => el === 'O').length === 3)) {
                 setThereIsAWinner(true)
+                dispatch(addRecord({'winner':playerTwo,'losser':playerOne}));
                 setWhoIsTheAWinner(playerTwo);
             }
         }
@@ -281,7 +283,7 @@ function Game() {
                 <div className="elementos elemento-uno-uno" onClick={() => handleChange(1)}>
                     {
                         flagUnoUno ?
-                            <p>{`${valueFlagUnoUno}`}</p>
+                            <p className='value-cell'>{`${valueFlagUnoUno}`}</p>
                             :
                             <p></p>
                     }
@@ -289,7 +291,7 @@ function Game() {
                 <div className="elementos elemento-uno-dos" onClick={() => handleChange(2)}>
                     {
                         flagUnoDos ?
-                            <p>{`${valueFlagUnoDos}`}</p>
+                            <p className='value-cell'>{`${valueFlagUnoDos}`}</p>
                             :
                             <p></p>
                     }
@@ -297,7 +299,7 @@ function Game() {
                 <div className="elementos elemento-uno-tres" onClick={() => handleChange(3)}>
                     {
                         flagUnoTres ?
-                            <p>{`${valueFlagUnoTres}`}</p>
+                            <p className='value-cell'>{`${valueFlagUnoTres}`}</p>
                             :
                             <p></p>
                     }
@@ -307,7 +309,7 @@ function Game() {
                 <div className="elementos elemento-dos-uno" onClick={() => handleChange(4)}>
                     {
                         flagDosUno ?
-                            <p>{`${valueFlagDosUno}`}</p>
+                            <p className='value-cell'>{`${valueFlagDosUno}`}</p>
                             :
                             <p></p>
                     }
@@ -315,7 +317,7 @@ function Game() {
                 <div className="elementos elemento-dos-dos" onClick={() => handleChange(5)}>
                     {
                         flagDosDos ?
-                            <p>{`${valueFlagDosDos}`}</p>
+                            <p className='value-cell'>{`${valueFlagDosDos}`}</p>
                             :
                             <p></p>
                     }
@@ -323,7 +325,7 @@ function Game() {
                 <div className="elementos elemento-dos-tres" onClick={() => handleChange(6)}>
                     {
                         flagDosTres ?
-                            <p>{`${valueFlagDosTres}`}</p>
+                            <p className='value-cell'>{`${valueFlagDosTres}`}</p>
                             :
                             <p></p>
                     }
@@ -333,7 +335,7 @@ function Game() {
                 <div className="elementos elemento-tres-uno" onClick={() => handleChange(7)}>
                     {
                         flagTresUno ?
-                            <p>{`${valueFlagTresUno}`}</p>
+                            <p className='value-cell'>{`${valueFlagTresUno}`}</p>
                             :
                             <p></p>
                     }
@@ -341,7 +343,7 @@ function Game() {
                 <div className="elementos elemento-tres-dos" onClick={() => handleChange(8)}>
                     {
                         flagTresDos ?
-                            <p>{`${valueFlagTresDos}`}</p>
+                            <p className='value-cell'>{`${valueFlagTresDos}`}</p>
                             :
                             <p></p>
                     }
@@ -349,7 +351,7 @@ function Game() {
                 <div className="elementos elemento-tres-tres" onClick={() => handleChange(9)}>
                     {
                         flagTresTres ?
-                            <p>{`${valueFlagTresTres}`}</p>
+                            <p className='value-cell'>{`${valueFlagTresTres}`}</p>
                             :
                             <p></p>
                     }

@@ -1,0 +1,22 @@
+.links {
+    text-decoration: none;
+    color: black;
+}
+
+.content-all-nav {
+    display: flex;
+    justify-content:space-between;
+    .title-pag {
+        margin-left: 50px;
+        width: 250px;
+        h3 {
+            position: relative;
+        }
+    }
+    .link-records {
+        display: flex;
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+    }
+}

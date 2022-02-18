@@ -62,7 +62,7 @@ function Gamers() {
                     <p>JUGADORES</p>
                 </div>
 
-                <div className="jugadires-name">
+                <div className="jugadores-name">
                     <div className="jugador-uno">
                         {
                             !changeNamePlayerOne ?
@@ -73,8 +73,10 @@ function Gamers() {
                                 :
                                 <>
                                     <input type="text" placeholder='...Nuevo Nombre' onChange={(e) => handleInput(e)} />
-                                    <button type='button' onClick={(e) => handleChangeName(e, 3)}>Cancelar</button>
-                                    <button type='button' onClick={(e) => handleSend(e, 1)}>Cambiar</button>
+                                    <div className='botones'>
+                                        <button type='button' onClick={(e) => handleChangeName(e, 3)}>Cancelar</button>
+                                        <button type='button' onClick={(e) => handleSend(e, 1)}>Cambiar</button>
+                                    </div>
                                 </>
                         }
                     </div>
@@ -89,8 +91,10 @@ function Gamers() {
                                 :
                                 <>
                                     <input type="text" placeholder='...Nuevo Nombre' onChange={(e) => handleInput(e)} />
-                                    <button type='button' onClick={(e) => handleChangeName(e, 4)}>Cancelar</button>
-                                    <button type='button' onClick={(e) => handleSend(e, 2)}>Cambiar</button>
+                                    <div className='botones'>
+                                        <button type='button' onClick={(e) => handleChangeName(e, 4)}>Cancelar</button>
+                                        <button type='button' onClick={(e) => handleSend(e, 2)}>Cambiar</button>
+                                    </div>
                                 </>
                         }
                     </div>
@@ -98,7 +102,7 @@ function Gamers() {
             </div>
 
             <div className="jugador-actual">
-                <p>TURNO DE:</p>
+                <p><b>TURNO DE</b>&nbsp;</p>
                 {
                     !player ?
                         <p>{playerOne}</p>

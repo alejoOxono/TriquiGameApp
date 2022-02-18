@@ -1,0 +1,16 @@
+
+
+.content-tabla {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    table{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 4px 12px 4px 12px;
+}

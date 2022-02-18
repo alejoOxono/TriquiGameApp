@@ -23,3 +23,32 @@ export const currentPlayerTwo = (value) => {
         payload: value
     }
 }
+
+export const addRecord = (object) => {
+    return function () {
+        axios
+            .post('http://127.0.0.1:3002/api/records', object)
+            .then((response) => {
+                return response;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+}
+
+export const getRecords = () => {
+    return async function (dispatch) {
+        axios
+            .get('http://127.0.0.1:3002/api/records')
+            .then((data) => {
+                dispatch({
+                    type: GET_RECORDS,
+                    payload: data.data
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+}
