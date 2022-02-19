@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Pasos Para instalar Triqui App en tu PC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 1. Verificación de dependencias iniciales
+Verificar o instalar npm, node y postgres. 
+### Nota: Recordar tener GIT instalado con anticipación.
 
-In the project directory, you can run:
+### 1.1 
+Para verificar, primero copiar y pegar cada uno de los comandos en la terminal de su computadora.
 
+### `node -v`
+### `npm -v`
+### `psql -V`
+
+### 1.2 
+Si no encuentra el versionado o no hay respuesta, se procede a instalar.
+
+### 1.2.1
+nodejs viene acompañado con npm. Revisar distribución y plataforma para descargar la opción correcta en https://nodejs.org/en/download/
+
+### 1.2.1 
+para postgres se debe realizar la misma revision y encontrar el instalador indicado en https://www.postgresql.org/download/
+
+
+## 2. Copia de repositorio
+Clonamos repositorio usando el comando
+### `git clone https://github.com/alejoOxono/TriquiGameApp.git`
+
+
+## 3. Preparamos bases de datos
+Crear usuario con su contraseña y bases de datos en postgres para la conexión con el servidor.
+
+### Nota: Si se desea usar usuario y bases de datos propia. Para esto modificar variables en el archivo `api/src/db.js`
+#### `En DB_USER`  indicar el usuario creado en postgres
+#### `En DB_PASSWORD`  indicar contraseña para el usuario
+#### `En DB_BDNAME` indicar el nombre de la base de datos
+
+### Para crear todo a partir de 0 desde la terminal escribir los siguientes comandos.
+
+### 3.1
+Conectar con postgres y crear usuario que para este caso la aplicación lo necesita con el nombre de `triquiuser`
+
+### `sudo -i -u postgres`
+### `createuser --interactive`
+### `Enter name of role to add: triquiuser`
+### `Shall the new role be a superuser? (y/n) y`
+### NOTA: El usuario creado por razones de simplicidad es un super usuario, lo que no es recomendable. Así, que luego de probar la aplicación se recomienda eliminar el usuario con el comando
+### `dropuser username`
+
+### 3.2
+Cambiar contraseña para el usuario recien creado `triquiuser` que por defecto la aplicación necesita de la contraseña `passwordtriqui12345` y crear la base de datos que debe de llevar el nombre `triqui`
+
+### `psql`
+### `ALTER USER triquiuser PASSWORD 'passwordtriqui12345';`
+### `create database triqui;;`
+
+
+## 4. Instalar dependencias para el servidor y el cliente.
+Para los siguientes pasos e incluso para el punto siguiente(5) se debe de usar nuevamente la linea de comandos, usando dos terminales y estar ubicado en los siguientes directorios:
+
+### Para el servidor `api`
+### Para el cliente `client`
+
+### 4.1
+Instalar dependencias especificadas en el package.json para cada uno de los directorios anteriormente especificados
+### `npm i` ubicado en `api`
+### `npm i` ubicado en `client`
+
+## 5. Ejecutar servidor y aplicativo
+Como se hizo en el punto anterior, con dos terminales de comando ubicadas en el directorio `api` y `client` respectivamente seguir los siguientes pasos
+
+### 5.1
+Para el servidor ubicado en `api`, ingresar
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 5.2
+Para el front ubicado en `client`, ingresar
+### `npm start`
