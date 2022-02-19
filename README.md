@@ -23,7 +23,7 @@ para postgres se debe realizar la misma revision y encontrar el instalador indic
 
 
 ## 2. Copia de repositorio
-Clonamos repositorio usando el comando
+Clonamos repositorio usando el comando en la terminal de linea de comandos
 ### `git clone https://github.com/alejoOxono/TriquiGameApp.git`
 
 
@@ -44,15 +44,18 @@ Conectar con postgres y crear usuario que para este caso la aplicación lo neces
 ### `createuser --interactive`
 ### `Enter name of role to add: triquiuser`
 ### `Shall the new role be a superuser? (y/n) y`
-### NOTA: El usuario creado por razones de simplicidad es un super usuario, lo que no es recomendable. Así, que luego de probar la aplicación se recomienda eliminar el usuario con el comando
-### `dropuser username`
+### NOTA: El usuario creado por razones de simplicidad es un super usuario, lo que no es recomendable. Así, que luego de probar la aplicación se recomienda eliminar el usuario con los comandos
+### `sudo -i -u postgres`
+### `psql`
+### `DROP DATABASE triqui;`
+### `DROP USER triquiuser;`
 
 ### 3.2
 Cambiar contraseña para el usuario recien creado `triquiuser` que por defecto la aplicación necesita de la contraseña `passwordtriqui12345` y crear la base de datos que debe de llevar el nombre `triqui`
 
 ### `psql`
 ### `ALTER USER triquiuser PASSWORD 'passwordtriqui12345';`
-### `create database triqui;;`
+### `CREATE DATABASE triqui;`
 
 
 ## 4. Instalar dependencias para el servidor y el cliente.
