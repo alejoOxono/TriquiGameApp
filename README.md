@@ -54,7 +54,7 @@ Conectar con postgres y crear usuario que para este caso la aplicación lo neces
 Cambiar contraseña para el usuario recien creado `triquiuser` que por defecto la aplicación necesita de la contraseña `passwordtriqui12345` y crear la base de datos que debe de llevar el nombre `triqui`
 
 ### `psql`
-### `ALTER USER triquiuser PASSWORD 'passwordtriqui12345';`
+### `ALTER USER 'triquiuser' PASSWORD 'passwordtriqui12345';`
 ### `CREATE DATABASE triqui;`
 
 
